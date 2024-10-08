@@ -17,3 +17,17 @@ c.execute('DROP TABLE products')
 c.execute('DROP TABLE data')
 
 c.execute('CREATE TABLE products ([prooduct_id] INTEGER PRIMARY KEY, [product_name] TEX, [price] INTEGER)')
+
+
+#INSERT
+c.execute('''INSERT INTO products (prooduct_id, product_name, price)
+    VALUES
+    (1, 'Computer', 800),
+    (2, 'Printer', 200),
+    (3, 'Tablet', 300)
+''')
+conn.commit()
+
+
+df_data2 = df_data.iloc[::-2]
+df_data2.to_sql('data', conn, if_exists='append')
