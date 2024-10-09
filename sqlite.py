@@ -49,3 +49,16 @@ query = "SELECT * FROM data"
 df = pd.read_sql(query, con=conn, index_col='index_name')
 
 df = pd.read_sql("SELECT A, B, C FROM data WHERE A > 200 AND B > 100", con=conn)
+
+
+
+# UPDATE e DELETE
+c.execute("UPDATE data SET A=218 WHERE index_name='b'")
+conn.commit()
+
+c.execute("UPDATE data SET A=218, B=228 WHERE index_name='b'")
+conn.commit()
+
+
+c.execute("DELETE FROM data WHERE index_name=1")
+conn.commit()
