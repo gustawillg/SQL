@@ -31,3 +31,21 @@ conn.commit()
 
 df_data2 = df_data.iloc[::-2]
 df_data2.to_sql('data', conn, if_exists='append')
+
+# SELECT
+c.execute("SELECT * FROM data")
+c.fetchone()
+c.fetchall()
+df = pd.DataFrame(c.fetchall())
+
+
+c.execute("SELECT * FROM data WHERE A > 200")
+df = pd.DataFrame(c.fetchall())
+
+c.execute("SELECT * FROM data WHERE A > 200 AND B > 100")
+df = pd.DataFrame(c.fetchall())
+
+query = "SELECT * FROM data"
+df = pd.read_sql(query, con=conn, index_col='index_name')
+
+df = pd.read_sql("SELECT A, B, C FROM data WHERE A > 200 AND B > 100", con=conn)
